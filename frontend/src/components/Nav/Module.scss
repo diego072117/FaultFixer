@@ -99,7 +99,7 @@
           display: flex;
           align-items: center;
           gap: 5px;
-          position: relative; 
+          position: relative;
 
           &::before {
             content: "";
@@ -161,11 +161,6 @@
 
 @media (max-width: 800px) {
   .navbar {
-    &__container {
-      flex-direction: column;
-      padding: 0;
-    }
-
     .user-auth-nav {
       .dropdown-menu {
         right: 0;

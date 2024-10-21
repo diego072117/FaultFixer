@@ -10,8 +10,8 @@ export const useUserActions = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const NewUser = (userData) => {
-    dispatch(registerUserAsync(userData));
+  const NewUser = async (userData) => {
+    return dispatch(registerUserAsync(userData));
   };
 
   const LoginUser = async (userData) => {

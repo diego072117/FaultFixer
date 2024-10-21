@@ -68,7 +68,9 @@ export const Nav = () => {
             <Link to="/login-user" className="btn btn--login">
               Log in
             </Link>
-            <button className="btn btn--signup">Sign up</button>
+            <Link to="/singup-user" className="btn btn--signup">
+              Sign up
+            </Link>
           </div>
         )}
       </div>
