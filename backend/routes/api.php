@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Posts\PostController;
 use App\Http\Controllers\Users\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,4 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'Users', 'controller' => UserController::class], function () {
     Route::post('/CreateUser', 'createUser');
     Route::post('/Login', 'loginUser');
+    Route::get('/GetUserById/{id}', 'getUserById');
+    Route::get('/GeAlltUsers', 'getAllUsers');
+    Route::post('/UpdateUser/{id}', 'updateUser');
+});
+
+Route::group(['prefix' => 'Posts', 'controller' => PostController::class], function () {
+    Route::post('/CreatePost', 'createPost');
 });
