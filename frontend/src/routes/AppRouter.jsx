@@ -5,9 +5,14 @@ import { Toaster } from "react-hot-toast";
 import { Nav } from "../components/Nav/Nav";
 import { Login } from "../pages/Login/Login";
 import { Register } from "../pages/Register/Register";
+import { Post } from "../pages/CreatePost/Post";
+import { Profile } from "../pages/Profile/Profile";
+import { useSelector } from "react-redux";
+import { UpdateProfile } from "../pages/UpdateProfile/UpdateProfile";
 
 export const AppRouter = () => {
   const { isUserAuthenticated } = useValidators();
+  const user = useSelector((state) => state.users.auth.user);
 
   return (
     <>
@@ -16,6 +21,9 @@ export const AppRouter = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login-user" element={<Login />} />
         <Route path="/singup-user" element={<Register />} />
+        <Route path="/create-posts" element={<Post />} />
+        <Route path="/profile/:id" element={<Profile />} />
+        <Route path="/update-profile/:id" element={<UpdateProfile />} />
       </Routes>
       <Toaster position="top-center" reverseOrder={false} />
     </>

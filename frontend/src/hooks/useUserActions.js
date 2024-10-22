@@ -1,9 +1,12 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
+  getAllUsersAsync,
+  getUserByIdAsync,
   loginUserAsync,
   logout,
   registerUserAsync,
+  updateUserAsync,
 } from "../store/users/slice";
 
 export const useUserActions = () => {
@@ -12,6 +15,18 @@ export const useUserActions = () => {
 
   const NewUser = async (userData) => {
     return dispatch(registerUserAsync(userData));
+  };
+
+  const userbyId = async (id) => {
+    dispatch(getUserByIdAsync(id));
+  };
+
+  const allUsers = () => {
+    dispatch(getAllUsersAsync());
+  };
+
+  const updateUser = async (userData) => {
+    return dispatch(updateUserAsync(userData));
   };
 
   const LoginUser = async (userData) => {
@@ -23,5 +38,5 @@ export const useUserActions = () => {
     navigate("/");
   };
 
-  return { NewUser, LoginUser, LogoutUser };
+  return { NewUser, userbyId, allUsers, LoginUser, LogoutUser, updateUser };
 };

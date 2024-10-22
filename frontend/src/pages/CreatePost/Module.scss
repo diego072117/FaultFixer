@@ -1,0 +1,110 @@
+.create {
+  margin: 2em 8em;
+  @media (max-width: 930px) {
+    margin: 1em;
+  }
+  .title-create {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    font-family: "Inter";
+    font-weight: 600;
+    img {
+      margin: 0 1em 0 0;
+    }
+  }
+}
+
+.form-create {
+  .container-post {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    color: #fff;
+    font-family: "Inter";
+    margin-bottom: 2em;
+
+    .content-post-form {
+      width: 100%; // Se adapta al ancho completo del contenedor
+      max-width: 600px; // Ancho máximo
+      margin: 1em;
+
+      .desc-post {
+        margin: 15px 0 7px 0;
+      }
+
+      .form-input-create {
+        color: #fff;
+        border: 1px solid #f7a664;
+        box-shadow: 0px 4px 20px rgba(246, 131, 54, 0.806);
+        background-color: transparent;
+        border-radius: 10px;
+        outline: none;
+        padding: 15px;
+        margin: 4px 0 16px;
+        resize: none;
+        height: 20.5em;
+      }
+    }
+  }
+
+  .img-post,
+  .preview-post {
+    border: 1px solid #f7a664;
+    box-shadow: 0px 4px 20px rgba(246, 131, 54, 0.806);
+    background-color: transparent;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%; // Ocupa el ancho completo de su contenedor
+    max-width: 600px; // Ancho máximo
+    height: 19em;
+    //margin: 1em 0;
+
+    img {
+      border-radius: 30px;
+      width: 80%;
+      height: 90%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  .file_uploader-label {
+    text-align: center;
+    border-top: 1px solid #5c5c7b;
+    color: #5c5c7b;
+    cursor: pointer;
+    background-color: transparent;
+    border-radius: 0 0 10px 10px;
+    //padding: 1em;
+  }
+}
+
+.container-create-post {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1em;
+  margin-top: 2em;
+  
+}
+
+.content-post-form {
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+}
+
+// Media query para ajustar en pantallas más pequeñas
+@media (max-width: 600px) {
+  .form-create {
+    .container-post {
+      .content-post-form {
+        width: 100%; // Asegura que se ajuste en pantallas pequeñas
+      }
+    }
+  }
+}

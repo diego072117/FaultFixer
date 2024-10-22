@@ -32,6 +32,32 @@ export const registerUserAsync = createAsyncThunk(
   }
 );
 
+export const getUserByIdAsync = createAsyncThunk(
+  "users/getrUserById",
+  async (id) => {
+    try {
+      const response = await axios.get(
+        `${VITE_URL_API}/Users/GetUserById/${id}`
+      );
+      return response.data;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+);
+
+export const getAllUsersAsync = createAsyncThunk(
+  "users/getAllUsers",
+  async () => {
+    try {
+      const response = await axios.get(`${VITE_URL_API}/Users/GeAlltUsers`);
+      return response.data;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+);
+
 export const loginUserAsync = createAsyncThunk(
   "users/loginUser",
   async (userData) => {
@@ -52,6 +78,34 @@ export const loginUserAsync = createAsyncThunk(
   }
 );
 
+export const updateUserAsync = createAsyncThunk(
+  "users/updateUser",
+  async (userData, { getState }) => {
+    try {
+      const response = await axios.post(
+        `${VITE_URL_API}/Users/UpdateUser/${userData.get("id")}`,
+        userData
+      );
+
+      const updatedUserData = response.data;
+
+      // Actualizar localStorage con los nuevos datos del usuario
+      const { access_token } = getState().users.auth;
+
+      const authData = {
+        access_token: access_token,
+        user: updatedUserData,
+      };
+
+      localStorage.setItem("auth", JSON.stringify(authData));
+
+      return updatedUserData;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+);
+
 export const usersSlice = createSlice({
   name: "users",
   initialState,
@@ -65,7 +119,7 @@ export const usersSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(registerUserAsync.pending, (state) => {
+     .addCase(registerUserAsync.pending, (state) => {
         state.status = "loading";
       })
       .addCase(registerUserAsync.fulfilled, (state) => {
@@ -77,6 +131,30 @@ export const usersSlice = createSlice({
         state.error = action.error.message;
         toast.error("This didn't work.");
       })
+      .addCase(getUserByIdAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getUserByIdAsync.fulfilled, (state, acrion) => {
+        state.status = "succeeded";
+        state.userById = acrion.payload;
+      })
+      .addCase(getUserByIdAsync.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+        // toast.error("This didn't work");
+      })
+      .addCase(getAllUsersAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getAllUsersAsync.fulfilled, (state, acrion) => {
+        state.status = "succeeded";
+        state.users = acrion.payload;
+      })
+      .addCase(getAllUsersAsync.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+        // toast.error("This didn't work.");
+      })
       .addCase(loginUserAsync.pending, (state) => {
         state.status = "loading";
       })
@@ -86,6 +164,19 @@ export const usersSlice = createSlice({
         toast.success("Successfully!");
       })
       .addCase(loginUserAsync.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+        toast.error("This didn't work.");
+      })
+      .addCase(updateUserAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(updateUserAsync.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.auth.user = action.payload;
+        toast.success("Successfully!");
+      })
+      .addCase(updateUserAsync.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
         toast.error("This didn't work.");
