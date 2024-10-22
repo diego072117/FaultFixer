@@ -1,11 +1,84 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
 
-body,p{
-    margin: 0;
-    padding: 0;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #252627;
+body,
+p {
+  margin: 0;
+  padding: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #252627;
+}
+
+.form-input {
+  color: #fff;
+  border: 1px solid #f7a664;
+  box-shadow: 0px 4px 20px rgba(246, 131, 54, 0.806);
+  background-color: transparent;
+  outline: none;
+  margin-bottom: 2em;
+  padding: 1em;
+  border-radius: 8px;
+  font-size: 1em;
+}
+
+.not-allowed {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.form-input:focus {
+  border: 0.1em solid #f7a664;
+  outline: none;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.button {
+  border: 1px solid #f7a664;
+  border-radius: 5px;
+  padding: 16px 20px;
+  color: #fff;
+  font-weight: 600;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.update {
+  background-color: #f7a664;
+}
+
+.cancel {
+  background-color: #1f1f22;
+}
+
+.file-uploader-img{
+  width: 5em;
+  height: 5em;
+  color: #5C5C7B;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: #09090a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #f7a664;
+  border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7878a3;
 }

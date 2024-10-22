@@ -1,0 +1,60 @@
+.container-update-user {
+  font-family: "Inter";
+  display: flex;
+  justify-content: center;
+  margin: 1em;
+}
+
+.info-update-profile {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 63em;
+
+  .title-update-profile {
+    display: flex;
+    align-items: center;
+    color: #fff;
+    //margin-bottom: 2.5em;
+    font-size: 20px;
+    img {
+      margin-right: 10px;
+    }
+  }
+
+  .container-uploader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2em;
+
+    img {
+      width: 96px;
+      height: 96px;
+      margin-right: 10px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  .user-update-profile {
+    display: flex;
+    flex-direction: column;
+    color: #f7a664;
+
+    label {
+      color: #fff;
+      margin-bottom: 5px;
+    }
+  }
+
+  .buttons-update-profile {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}
+
+.img-avatar-profile {
+  cursor: pointer;
+}

@@ -4,6 +4,7 @@ import { useUserActions } from "../../hooks/useUserActions";
 import { useSelector } from "react-redux";
 import { IoMdLogOut } from "react-icons/io";
 import { useState } from "react";
+const { VITE_URL_API_IMG } = import.meta.env;
 import "./Module.scss";
 
 export const Nav = () => {
@@ -33,7 +34,11 @@ export const Nav = () => {
           <div className="user-auth-nav">
             <div className="info-user" onClick={toggleMenu}>
               <img
-                src="/assets/images/profile-placeholder.svg"
+                src={
+                  user.avatar
+                    ? `${VITE_URL_API_IMG}/${user.avatar}`
+                    : "/assets/images/profile-placeholder.svg"
+                }
                 alt=""
                 className="info-user-img"
               />
@@ -48,13 +53,15 @@ export const Nav = () => {
                   />
                   <p>{user.username}</p>
                 </div>
-                <Link to="/profile" className="dropdown-item">
+                <Link to={`/profile/${user.id}`} className="dropdown-item">
                   Perfil
                 </Link>
                 <Link to="/creator-dashboard" className="dropdown-item">
                   Publicaciones
                 </Link>
-                <Link className="dropdown-item">Ajustes</Link>
+                <Link to="/create-posts" className="dropdown-item">
+                  Nueva Publicacion
+                </Link>
 
                 <button onClick={handleLogout} className="dropdown-item logout">
                   <IoMdLogOut /> Cerrar sesión
