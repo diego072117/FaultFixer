@@ -30,6 +30,14 @@ export const createPostAsync = createAsyncThunk(
   }
 );
 
+export const getAllPostAsync = createAsyncThunk("post/getAllPost", async () => {
+  try {
+    const response = await axios.get(`${VITE_URL_API}/Posts/AllPosts`);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+});
 
 const postsSlice = createSlice({
   name: "posts",
@@ -48,6 +56,17 @@ const postsSlice = createSlice({
         state.status = "failed";
         state.error = action.error.message;
         toast.error("This didn't work.");
+      })
+      .addCase(getAllPostAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getAllPostAsync.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.posts = action.payload;
+      })
+      .addCase(getAllPostAsync.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
       });
   },
 });

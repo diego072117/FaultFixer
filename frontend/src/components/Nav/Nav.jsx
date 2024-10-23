@@ -3,7 +3,7 @@ import { useValidators } from "../../hooks/useValidators";
 import { useUserActions } from "../../hooks/useUserActions";
 import { useSelector } from "react-redux";
 import { IoMdLogOut } from "react-icons/io";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 const { VITE_URL_API_IMG } = import.meta.env;
 import "./Module.scss";
 
@@ -12,6 +12,7 @@ export const Nav = () => {
   const { isUserAuthenticated } = useValidators();
   const user = useSelector((state) => state.users.auth.user);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef(null);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -20,6 +21,23 @@ export const Nav = () => {
   const handleLogout = () => {
     LogoutUser();
   };
+
+  // const handleClickOutside = (event) => {
+  //   if (menuRef.current && !menuRef.current.contains(event.target)) {
+  //     setIsMenuOpen(false);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   if (isMenuOpen) {
+  //     document.addEventListener("mousedown", handleClickOutside);
+  //   } else {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   }
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, [isMenuOpen]);
 
   return (
     <nav className="navbar">
@@ -44,10 +62,14 @@ export const Nav = () => {
               />
             </div>
             {isMenuOpen && (
-              <div className="dropdown-menu">
+              <div className="dropdown-menu" ref={menuRef}>
                 <div className="info-user-nav">
                   <img
-                    src="/assets/images/profile-placeholder.svg"
+                    src={
+                      user.avatar
+                        ? `${VITE_URL_API_IMG}/${user.avatar}`
+                        : "/assets/images/profile-placeholder.svg"
+                    }
                     alt=""
                     className="info-user-img"
                   />

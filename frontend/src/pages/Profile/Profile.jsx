@@ -55,19 +55,7 @@ export const Profile = () => {
             </div>
           </div>
           <div className="edit-profile">
-            <Link
-              to={`/update-profile/${userAuth.id}`}
-              className={`edit-follow-button`}
-            >
-              <img
-                src={"/assets/icons/edit.svg"}
-                alt="edit"
-                width={20}
-                height={20}
-              />
-              <p>Edit Profile</p>
-            </Link>
-            {/* {userAuth.id == user.id ? (
+            {userAuth.id == user.id ? (
               <Link
                 to={`/update-profile/${userAuth.id}`}
                 className={`edit-follow-button`}
@@ -81,27 +69,8 @@ export const Profile = () => {
                 <p>Edit Profile</p>
               </Link>
             ) : (
-              <button
-                onClick={handleFolliwing}
-                className={`edit-follow-button ${
-                  statusFollow === "loading" ? "disabled" : "Active"
-                }`}
-                disabled={statusFollow === "loading"}
-              >
-                {statusFollow === "loading" ? (
-                  <Loader /> // Mostrar Loader cuando está cargando
-                ) : (
-                  <>
-                    {isFollowing ? (
-                      <RiUserUnfollowFill className="unfollow-icon" />
-                    ) : (
-                      <RiUserFollowFill className="follow-icon" />
-                    )}
-                    <p>{isFollowing ? "UnFollow" : "Follow"}</p>
-                  </>
-                )}
-              </button>
-            )} */}
+              ""
+            )}
           </div>
         </div>
       </div>
