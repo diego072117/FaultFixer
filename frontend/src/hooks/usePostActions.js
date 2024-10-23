@@ -1,7 +1,5 @@
 import { useDispatch } from "react-redux";
-import {
-  createPostAsync,
-} from "../store/posts/slice";
+import { createPostAsync, getAllPostAsync } from "../store/posts/slice";
 
 export const usePostActions = () => {
   const dispatch = useDispatch();
@@ -10,8 +8,12 @@ export const usePostActions = () => {
     return dispatch(createPostAsync(postData));
   };
 
+  const allPosts = async () => {
+    return dispatch(getAllPostAsync());
+  };
 
   return {
     createPost,
+    allPosts,
   };
 };

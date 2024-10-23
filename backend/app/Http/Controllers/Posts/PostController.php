@@ -46,4 +46,29 @@ class PostController extends Controller
 
         return response()->json(['message' => 'Post actualizado con éxito'], 200);
     }*/
+
+    public function getAllPosts()
+    {
+        // Obtener todos los posts ordenados del más reciente al más viejo
+        $posts = Posts::orderBy('created_at', 'DESC')->get();
+
+        // Cargar la relación con el usuario creador para cada post
+        $posts->load('usuarioCreador');
+
+        return response()->json(['posts' => $posts], 200);
+    }
+
+    public function getPostById($postId)
+    {
+
+        $post = Posts::findOrFail($postId);
+
+        if (!$post) {
+            return response()->json(['message' => 'El post no fue encontrado'], 404);
+        }
+
+        $post->load('usuarioCreador');
+
+        return $post;
+    }
 }

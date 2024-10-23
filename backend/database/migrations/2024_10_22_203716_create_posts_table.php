@@ -16,7 +16,6 @@ return new class extends Migration
             $table->text('descripcion')->nullable();
             $table->string('publicacion');
             $table->unsignedBigInteger('id_usuarioCreador');
-            $table->string('state')->default('activo');
             $table->timestamps();
             $table->softDeletes();
 
