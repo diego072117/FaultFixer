@@ -39,6 +39,44 @@ export const getAllPostAsync = createAsyncThunk("post/getAllPost", async () => {
   }
 });
 
+export const getPostById = createAsyncThunk("post/getPostById", async (id) => {
+  try {
+    const response = await axios.get(`${VITE_URL_API}/Posts/GetPostById/${id}`);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+});
+
+export const saveCommentAsync = createAsyncThunk(
+  "post/saveComment",
+  async (commentData) => {
+    try {
+      const response = await axios.post(
+        `${VITE_URL_API}/Posts/SaveComment/`,
+        commentData
+      );
+      return response.data;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+);
+
+export const getCommetsPost = createAsyncThunk(
+  "post/getCommetsPost",
+  async (id) => {
+    try {
+      const response = await axios.get(
+        `${VITE_URL_API}/Posts/PostComment/${id}`
+      );
+      return response.data;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+);
+
 const postsSlice = createSlice({
   name: "posts",
   initialState,
@@ -65,6 +103,40 @@ const postsSlice = createSlice({
         state.posts = action.payload;
       })
       .addCase(getAllPostAsync.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(getPostById.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getPostById.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.postById = action.payload;
+      })
+      .addCase(getPostById.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(saveCommentAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(saveCommentAsync.fulfilled, (state) => {
+        state.status = "succeeded";
+        toast.success("Successfully!");
+      })
+      .addCase(saveCommentAsync.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+        toast.error("This didn't work.");
+      })
+      .addCase(getCommetsPost.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getCommetsPost.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.commentsPost = action.payload;
+      })
+      .addCase(getCommetsPost.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });

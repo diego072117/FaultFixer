@@ -29,15 +29,13 @@
 
     .info-creator-post {
       p {
-        margin: 0;
+        margin-bottom: 5px;
         font-size: 0.9rem;
       }
     }
   }
 
   .post-description {
-    display: flex;
-    align-items: self-start;
     font-size: 1rem;
     word-wrap: break-word;
     overflow: hidden;

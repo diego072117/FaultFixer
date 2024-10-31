@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Posts;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Post\CreatePost;
+use App\Models\Comment\Comment;
 use App\Models\Posts\Posts;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -70,5 +72,29 @@ class PostController extends Controller
         $post->load('usuarioCreador');
 
         return $post;
+    }
+
+    public function saveComment(Request $request)
+    {
+
+        $comment = new Comment($request->all());
+        $comment->save();
+
+        return response()->json(['message' => 'Comentario creado con éxito'], 201);
+    }
+
+    public function getCommentsByPost($postId)
+    {
+        $post = Posts::findOrFail($postId);
+
+        if (!$post) {
+            return response()->json(['message' => 'El post no fue encontrado'], 404);
+        }
+
+        $comments = Comment::where('id_post', $postId)->orderBy('created_at', 'DESC')->get();
+
+        $comments->load("usuario");
+
+        return  $comments;
     }
 }

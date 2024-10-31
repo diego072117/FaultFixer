@@ -12,7 +12,7 @@ export const Home = () => {
     allPosts();
   }, []);
 
-  if (!posts || status === "loading")
+  if (status === "loading")
     return (
       <div className="loader">
         <Loader />

@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('comments', function (Blueprint $table) {
             $table->id();
-            $table->text('descripcion')->nullable();
-            $table->string('publicacion');
-            $table->unsignedBigInteger('id_usuarioCreador');
-            $table->string('state')->default('activo');
+            $table->unsignedBigInteger('id_user');
+            $table->unsignedBigInteger('id_post');
+            $table->text('coment');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('id_usuarioCreador')->references('id')->on('users');
+            $table->foreign('id_user')->references('id')->on('users');
+            $table->foreign('id_post')->references('id')->on('posts');
         });
     }
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('comments');
     }
 };

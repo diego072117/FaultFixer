@@ -1,0 +1,32 @@
+.container-commets {
+  height: 26em;
+  overflow: auto;
+  .comment {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+    .comment-user {
+      margin-right: 10px;
+
+      img {
+        width: 4em;
+        height: 4em;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+  }
+}
+
+.comment-content {
+  word-wrap: break-word; /* Asegura que las palabras largas se dividan */
+  word-break: break-word; /* Rompe palabras largas */
+  white-space: pre-wrap; /* Mantiene los saltos de línea */
+  overflow-wrap: break-word; /* Maneja el desbordamiento */
+  .info-user-comment {
+    font-size: 14px;
+    margin-bottom: 7px;
+    color: #f7a664;
+  }
+}

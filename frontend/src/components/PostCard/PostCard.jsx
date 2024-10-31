@@ -9,7 +9,7 @@ export const PostCard = ({ post }) => {
     "MMM d, yyyy 'at' hh:mm a"
   );
   return (
-    <Link to={`/`} className="card-post">
+    <Link to={`/posts/${post.id}`} className="card-post">
       <div className="user-post-info">
         <img
           className="user-creator-avatar"
