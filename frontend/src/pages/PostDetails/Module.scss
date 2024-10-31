@@ -1,0 +1,122 @@
+.post-details-container {
+  padding: 1em;
+  .button-back {
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    p {
+      color: #fff;
+    }
+  }
+}
+
+.info-details {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  color: #fff;
+  font-family: "Inter";
+
+  .info-pot-user-details {
+    padding: 1em;
+    border: 1px solid #f7a664;
+    box-shadow: 0px 4px 20px rgba(246, 131, 54, 0.806);
+    background-color: transparent;
+    border-radius: 10px;
+    margin: 1em;
+
+    .description-details {
+      width: 100%;
+      max-width: 35em;
+      max-height: 5em;
+      overflow: auto;
+      margin-bottom: 1em;
+      word-wrap: break-word; /* Asegura que las palabras largas se dividan */
+      word-break: break-word; /* Rompe palabras largas */
+      white-space: pre-wrap; /* Mantiene los saltos de línea */
+      overflow-wrap: break-word; /* Maneja el desbordamiento */
+    }
+
+    .info-user-creator {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      margin-bottom: 1em;
+      color: #fff;
+
+      img {
+        width: 5em;
+        height: 5em;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center;
+        margin: 0 10px 0 0;
+      }
+    }
+  }
+
+  .publicacion-post {
+    width: 100%;
+    max-width: 20em;
+    height: 20em;
+    border-radius: 10px;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .comments-posts {
+    border: 1px solid #f7a664;
+    box-shadow: 0px 4px 20px rgba(246, 131, 54, 0.806);
+    background-color: transparent;
+    border-radius: 10px;
+    padding: 1em;
+    width: 100%;
+    max-width: 35em;
+    max-height: 32em;
+    margin: 1em;
+
+    .add-comment {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1em;
+      .img-input-detail {
+        width: 4em;
+        height: 4em;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center;
+        margin: 0 10px 0 0;
+      }
+      .form-comment {
+        display: flex;
+        width: 100%;
+
+        .input-comment {
+          width: 100%;
+          border: 1px solid #f7a664;
+          background-color: transparent;
+          border-radius: 10px;
+          padding: 10px;
+          color: #fff;
+        }
+
+        .button-comment {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          width: 2em;
+          height: 2em;
+          background-color: #f7a664;
+          padding: 1em;
+          border-radius: 10px 0 10px 0;
+          margin: 0 0 0 10px;
+          cursor: pointer;
+          img {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}

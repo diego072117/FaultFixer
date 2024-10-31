@@ -9,6 +9,7 @@ import { Post } from "../pages/CreatePost/Post";
 import { Profile } from "../pages/Profile/Profile";
 import { useSelector } from "react-redux";
 import { UpdateProfile } from "../pages/UpdateProfile/UpdateProfile";
+import { PostDetails } from "../pages/PostDetails/PostDetails";
 
 export const AppRouter = () => {
   const { isUserAuthenticated } = useValidators();
@@ -24,6 +25,7 @@ export const AppRouter = () => {
         <Route path="/create-posts" element={<Post />} />
         <Route path="/profile/:id" element={<Profile />} />
         <Route path="/update-profile/:id" element={<UpdateProfile />} />
+        <Route path="/posts/:id" element={<PostDetails />} />
       </Routes>
       <Toaster position="top-center" reverseOrder={false} />
     </>

@@ -26,4 +26,7 @@ Route::group(['prefix' => 'Users', 'controller' => UserController::class], funct
 Route::group(['prefix' => 'Posts', 'controller' => PostController::class], function () {
     Route::post('/CreatePost', 'createPost');
     Route::get('/AllPosts', 'getAllPosts');
+    Route::post('/SaveComment', 'saveComment');
+    Route::get('/PostComment/{id}', 'getCommentsByPost');
+    Route::get('/GetPostById/{id}', 'getPostById');
 });

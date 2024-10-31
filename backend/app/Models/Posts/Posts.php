@@ -2,6 +2,7 @@
 
 namespace App\Models\Posts;
 
+use App\Models\Comment\Comment;
 use App\Models\Users\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -19,6 +20,11 @@ class Posts extends Model
         'id_usuarioAdquirido',
         'state',
     ];
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'id_post');
+    }
 
     public function usuarioCreador()
     {

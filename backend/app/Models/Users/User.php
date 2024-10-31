@@ -2,6 +2,7 @@
 
 namespace App\Models\Users;
 
+use App\Models\Comment\Comment;
 use App\Models\Posts\Posts;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -23,6 +24,11 @@ class User extends Authenticatable implements JWTSubject
         'avatar',
         'password',
     ];
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'id_user');
+    }
 
     public function posts()
     {
