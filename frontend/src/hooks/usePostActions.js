@@ -4,6 +4,7 @@ import {
   getAllPostAsync,
   getCommetsPost,
   getPostById,
+  getPostByUserId,
   saveCommentAsync,
 } from "../store/posts/slice";
 
@@ -16,6 +17,10 @@ export const usePostActions = () => {
 
   const allPosts = async () => {
     return dispatch(getAllPostAsync());
+  };
+
+  const listPostsByUser = async (id) => {
+    return dispatch(getPostByUserId(id));
   };
 
   const postsById = async (id) => {
@@ -36,5 +41,6 @@ export const usePostActions = () => {
     postsById,
     commetPost,
     saveComment,
+    listPostsByUser,
   };
 };

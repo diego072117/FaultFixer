@@ -77,6 +77,20 @@ export const getCommetsPost = createAsyncThunk(
   }
 );
 
+export const getPostByUserId = createAsyncThunk(
+  "post/getPostByUserId",
+  async (id) => {
+    try {
+      const response = await axios.get(
+        `${VITE_URL_API}/Posts/PostByUser/${id}`
+      );
+      return response.data;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+);
+
 const postsSlice = createSlice({
   name: "posts",
   initialState,
@@ -137,6 +151,17 @@ const postsSlice = createSlice({
         state.commentsPost = action.payload;
       })
       .addCase(getCommetsPost.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(getPostByUserId.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(getPostByUserId.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.postsByUser = action.payload;
+      })
+      .addCase(getPostByUserId.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });
