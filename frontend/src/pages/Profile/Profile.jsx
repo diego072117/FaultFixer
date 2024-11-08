@@ -4,8 +4,7 @@ import { useEffect } from "react";
 import { Loader } from "../../shared/Loader";
 import { useUserActions } from "../../hooks/useUserActions";
 const { VITE_URL_API_IMG } = import.meta.env;
-// import { RiUserFollowFill } from "react-icons/ri";
-// import { RiUserUnfollowFill } from "react-icons/ri";
+import { PostByUser } from "../../components/PostByUser/PostByUser";
 import "./Module.scss";
 
 export const Profile = () => {
@@ -13,15 +12,11 @@ export const Profile = () => {
   const { userbyId } = useUserActions();
   const userAuth = useSelector((state) => state.users.auth.user);
   const { userById: user, status } = useSelector((state) => state.users);
+  const { postsByUser } = useSelector((state) => state.posts);
 
   useEffect(() => {
     userbyId(id);
-    // getFollowings(userAuth.id);
   }, [id]);
-
-  // const isFollowing = () => {
-  //   return followings.some((follow) => follow.id == id);
-  // };
 
   if (!user || status === "loading")
     return (
@@ -49,7 +44,7 @@ export const Profile = () => {
               <p className="tag-name">@{user.username}</p>
               <div className="info-acount">
                 <p className="posts">
-                  <span>5</span> Posts
+                  <span>{postsByUser.posts?.length}</span> Posts
                 </p>
               </div>
             </div>
@@ -88,21 +83,11 @@ export const Profile = () => {
             />
             Posts
           </button>
-          {/* <button
-            className={`button-like-profile`}
-            // onClick={handleLikeProfile}
-          >
-            <img
-              src={"/assets/icons/like.svg"}
-              alt="like"
-              width={20}
-              height={20}
-            />
-            Liked Posts
-          </button> */}
         </div>
       </div>
-      <div className="post-likes">{/* <PostByUser userId={user.id} />  */}</div>
+      <div className="post-likes">
+        <PostByUser userId={user.id} />
+      </div>
     </div>
   );
 };

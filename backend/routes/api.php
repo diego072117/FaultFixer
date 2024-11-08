@@ -29,4 +29,5 @@ Route::group(['prefix' => 'Posts', 'controller' => PostController::class], funct
     Route::post('/SaveComment', 'saveComment');
     Route::get('/PostComment/{id}', 'getCommentsByPost');
     Route::get('/GetPostById/{id}', 'getPostById');
+    Route::get('/PostByUser/{id}', 'getPostByUser');
 });

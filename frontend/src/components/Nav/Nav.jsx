@@ -45,7 +45,6 @@ export const Nav = () => {
         {/* Logo */}
         <Link to="/" className="navbar__logo">
           <p className="">FaultFixer</p>
-          {/* <img src="logo.png" alt="Logo" /> */}
         </Link>
 
         {isUserAuthenticated() && (
@@ -75,11 +74,11 @@ export const Nav = () => {
                   />
                   <p>{user.username}</p>
                 </div>
+                <Link to="/" className="dropdown-item">
+                  Home
+                </Link>
                 <Link to={`/profile/${user.id}`} className="dropdown-item">
                   Perfil
-                </Link>
-                <Link to="/creator-dashboard" className="dropdown-item">
-                  Publicaciones
                 </Link>
                 <Link to="/create-posts" className="dropdown-item">
                   Nueva Publicacion
