@@ -7,9 +7,11 @@ import { format } from "date-fns";
 import { CommentsPost } from "../../components/CommentsPost/CommentsPost";
 const { VITE_URL_API_IMG } = import.meta.env;
 import "./Module.scss";
+import { useValidators } from "../../hooks/useValidators";
 
 export const PostDetails = () => {
   const { id } = useParams();
+  const { isUserAuthenticated } = useValidators();
   const navigate = useNavigate();
   const { postsById, commetPost, saveComment } = usePostActions();
   const {
@@ -62,23 +64,48 @@ export const PostDetails = () => {
 
       <div className="info-details">
         <div className="info-pot-user-details">
-          <Link
-            to={`/profile/${post.usuario_creador.id}`}
-            className="info-user-creator"
-          >
-            <img
-              src={
-                post.usuario_creador.avatar
-                  ? `${VITE_URL_API_IMG}/${post.usuario_creador.avatar}`
-                  : "/assets/images/profile-placeholder.svg"
-              }
-              alt="profile"
-            />
-            <div className="user-creator-details">
-              <p className="creator-name">{post.usuario_creador.name}</p>
-              <p className="date-post">{formattedDate}</p>
-            </div>
-          </Link>
+          <div className="header-info">
+            <Link
+              to={`/profile/${post.usuario_creador.id}`}
+              className="info-user-creator"
+            >
+              <img
+                src={
+                  post.usuario_creador.avatar
+                    ? `${VITE_URL_API_IMG}/${post.usuario_creador.avatar}`
+                    : "/assets/images/profile-placeholder.svg"
+                }
+                alt="profile"
+              />
+              <div className="user-creator-details">
+                <p className="creator-name">{post.usuario_creador.name}</p>
+                <p className="date-post">{formattedDate}</p>
+              </div>
+            </Link>
+            {user?.id === post.usuario_creador.id ? (
+              <div className="actions-post">
+                <Link to={`/update-post/${post.id}`} className="icon">
+                  <img
+                    src={"/assets/icons/edit.svg"}
+                    alt="edit"
+                    width={24}
+                    height={24}
+                  />
+                </Link>
+
+                {/* <button variant="ghost" className="icon">
+                  <img
+                    src={"/assets/icons/delete.svg"}
+                    alt="delete"
+                    width={24}
+                    height={24}
+                  />
+                </button> */}
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
           <p className="description-details">{post.descripcion}</p>
           <img
             src={`${VITE_URL_API_IMG}/${post.publicacion}`}
@@ -87,12 +114,12 @@ export const PostDetails = () => {
           />
         </div>
         <div className="comments-posts">
-          {post.state === "activo" && (
+          {post.state === "activo" && isUserAuthenticated() &&(
             <div className="add-comment">
               <img
                 src={
-                  user.avatar
-                    ? `${VITE_URL_API_IMG}/${user.avatar}`
+                  user?.avatar
+                    ? `${VITE_URL_API_IMG}/${user?.avatar}`
                     : "/assets/images/profile-placeholder.svg"
                 }
                 alt="profile"
@@ -138,29 +165,7 @@ export const PostDetails = () => {
                 <p className="date-post">{formattedDate} - Bogota</p>
               </div>
             </Link>
-            {user.id === post.usuario_creador.id ? (
-              <div className="actions-post">
-                <Link to={`/update-post/${post.id}`} className="icon">
-                  <img
-                    src={"/assets/icons/edit.svg"}
-                    alt="edit"
-                    width={24}
-                    height={24}
-                  />
-                </Link>
-
-                <button variant="ghost" className="icon">
-                  <img
-                    src={"/assets/icons/delete.svg"}
-                    alt="delete"
-                    width={24}
-                    height={24}
-                  />
-                </button>
-              </div>
-            ) : (
-              ""
-            )}
+           
           </div>
           <div className="info-post">
             <p>{post.descripcion}</p>

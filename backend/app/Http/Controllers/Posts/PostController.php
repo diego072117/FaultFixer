@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Posts;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Post\CreatePost;
+use App\Http\Requests\Post\UpdatePost;
 use App\Models\Comment\Comment;
 use App\Models\Posts\Posts;
 use Illuminate\Http\Request;
@@ -27,7 +28,7 @@ class PostController extends Controller
         return response()->json(['message' => 'Post creado con éxito'], 201);
     }
 
-    /*public function updatePost(UpdatePost $request, $postId)
+    public function updatePost(UpdatePost $request, $postId)
     {
         $post = Posts::findOrFail($postId);
 
@@ -47,7 +48,7 @@ class PostController extends Controller
         $post->update($validatedData);
 
         return response()->json(['message' => 'Post actualizado con éxito'], 200);
-    }*/
+    }
 
     public function getAllPosts()
     {

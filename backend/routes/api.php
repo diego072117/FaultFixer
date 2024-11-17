@@ -25,6 +25,7 @@ Route::group(['prefix' => 'Users', 'controller' => UserController::class], funct
 
 Route::group(['prefix' => 'Posts', 'controller' => PostController::class], function () {
     Route::post('/CreatePost', 'createPost');
+    Route::post('/UpdatePost/{id}', 'updatePost');
     Route::get('/AllPosts', 'getAllPosts');
     Route::post('/SaveComment', 'saveComment');
     Route::get('/PostComment/{id}', 'getCommentsByPost');
