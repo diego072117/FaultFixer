@@ -19,8 +19,6 @@ export const Home = () => {
       </div>
     );
 
-  console.log(posts);
-
   return (
     <div className="container-posts">
       {posts?.map((post) => (

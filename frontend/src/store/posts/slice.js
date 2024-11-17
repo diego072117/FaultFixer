@@ -91,6 +91,21 @@ export const getPostByUserId = createAsyncThunk(
   }
 );
 
+export const updatePostAsync = createAsyncThunk(
+  "post/updatePost",
+  async (postData) => {
+    try {
+      const response = await axios.post(
+        `${VITE_URL_API}/Posts/UpdatePost/${postData.get("id")}`,
+        postData
+      );
+      return response.data;
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+);
+
 const postsSlice = createSlice({
   name: "posts",
   initialState,
@@ -162,6 +177,17 @@ const postsSlice = createSlice({
         state.postsByUser = action.payload;
       })
       .addCase(getPostByUserId.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(updatePostAsync.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(updatePostAsync.fulfilled, (state) => {
+        state.status = "succeeded";
+        toast.success("Successfully updated post!");
+      })
+      .addCase(updatePostAsync.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });

@@ -6,6 +6,7 @@ import {
   getPostById,
   getPostByUserId,
   saveCommentAsync,
+  updatePostAsync,
 } from "../store/posts/slice";
 
 export const usePostActions = () => {
@@ -35,6 +36,10 @@ export const usePostActions = () => {
     return dispatch(saveCommentAsync(commentData));
   };
 
+  const updatePost = async (postData) => {
+    return dispatch(updatePostAsync(postData));
+  };
+
   return {
     createPost,
     allPosts,
@@ -42,5 +47,6 @@ export const usePostActions = () => {
     commetPost,
     saveComment,
     listPostsByUser,
+    updatePost,
   };
 };
