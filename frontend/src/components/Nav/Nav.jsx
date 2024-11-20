@@ -83,6 +83,9 @@ export const Nav = () => {
                 <Link to="/create-posts" className="dropdown-item">
                   Nueva Publicacion
                 </Link>
+                <Link to="/chat-bot" className="dropdown-item">
+                  Bot IA
+                </Link>
 
                 <button onClick={handleLogout} className="dropdown-item logout">
                   <IoMdLogOut /> Cerrar sesión

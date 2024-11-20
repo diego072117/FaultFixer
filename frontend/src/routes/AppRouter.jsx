@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { UpdateProfile } from "../pages/UpdateProfile/UpdateProfile";
 import { PostDetails } from "../pages/PostDetails/PostDetails";
 import { UpdatePost } from "../pages/UpdatePost/UpdatePost";
+import { ChatBot } from "../pages/ChatBot/ChatBot";
 
 export const AppRouter = () => {
   const { isUserAuthenticated } = useValidators();
@@ -28,6 +29,7 @@ export const AppRouter = () => {
         <Route path="/update-profile/:id" element={<UpdateProfile />} />
         <Route path="/posts/:id" element={<PostDetails />} />
         <Route path="/update-post/:id" element={<UpdatePost />} />
+        <Route path="/chat-bot" element={<ChatBot />} />
       </Routes>
       <Toaster position="top-center" reverseOrder={false} />
     </>
